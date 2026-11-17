@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Raw source footage & originals (not used by the site; too large for GitHub, unblurred plates)
+/assets/*.MP4
+/assets/*.mp4
+/assets/*.JPG
+/assets/*.jpg
+/assets/images/IMG_0069.png
+/assets/images/IMG_2841.png
+/assets/images/logo.png
+/assets/gifs/IMG_2649.gif
+/assets/gifs-blurred/
+
+# Work in progress (blurred videos still processing)
+/assets/web/videos/
+
+# Reference only
+/html template.txt

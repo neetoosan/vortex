@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Your Wrap — Vortex Wraps</title>
+  <meta name="description" content="Book a colour change wrap, paint protection film, two-tone or chrome delete with Vortex Wraps. Pick your service, finish and date in under two minutes.">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="assets/web/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');setTimeout(function(){var r=document.documentElement;if(!r.classList.contains('is-ready'))r.classList.add('is-ready','no-motion')},4500);</script>
+</head>
+<body class="page-book">
+  <div class="veil" aria-hidden="true"></div>
+
+  <header class="site-header is-scrolled" id="header">
+    <a href="index.html" class="brand" aria-label="Vortex Wraps home">
+      <img src="assets/web/logo-wide.png" alt="Vortex Wraps" width="700" height="256">
+    </a>
+    <div class="header-meta">
+      <span data-contact="location">Lagos, Nigeria</span>
+      <a data-contact="phone" href="tel:+2348066555086">+234 806 655 5086</a>
+      <a data-contact="email" href="mailto:vortexwraps02@gmail.com">vortexwraps02@gmail.com</a>
+    </div>
+    <div class="header-actions">
+      <a class="header-social" data-contact="instagram" href="https://www.instagram.com/vortexwraps_/" target="_blank" rel="noopener">Instagram</a>
+      <a class="header-social" data-contact="tiktok" href="https://www.tiktok.com/@vortexwraps__" target="_blank" rel="noopener">TikTok</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+        <span class="menu-btn__label">Menu</span>
+        <span class="menu-btn__icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="menu" id="menu" aria-hidden="true">
+    <ul class="menu__links">
+      <li><a href="index.html"><span>00</span>Home</a></li>
+      <li><a href="index.html#work"><span>01</span>Work</a></li>
+      <li><a href="gallery.html"><span>02</span>Gallery</a></li>
+      <li><a href="index.html#services"><span>03</span>Services</a></li>
+      <li><a href="index.html#founder"><span>04</span>Founder</a></li>
+      <li><a href="book.html"><span>05</span>Book a wrap</a></li>
+    </ul>
+    <div class="menu__foot">
+      <a data-contact="phone" href="tel:+2348066555086">+234 806 655 5086</a>
+      <a data-contact="whatsapp" href="https://wa.me/2348066555086" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-contact="instagram" href="https://www.instagram.com/vortexwraps_/" target="_blank" rel="noopener">Instagram</a>
+      <a data-contact="tiktok" href="https://www.tiktok.com/@vortexwraps__" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="bk-hero section">
+      <span class="label" data-reveal="fade">(Booking)</span>
+      <h1 data-reveal="words">Book your <em>wrap.</em></h1>
+      <p data-reveal="fade">Five quick steps. Tell us what you're after and we'll confirm your slot on WhatsApp — usually the same day.</p>
+    </section>
+
+    <section class="bk" aria-label="Booking form">
+      <form class="wizard" id="wizard" novalidate>
+        <!-- progress -->
+        <ol class="steps" id="steps">
+          <li class="is-current"><button type="button" data-goto="0"><b>1</b><span>Service</span></button></li>
+          <li><button type="button" data-goto="1"><b>2</b><span>Vehicle</span></button></li>
+          <li><button type="button" data-goto="2"><b>3</b><span>Look</span></button></li>
+          <li><button type="button" data-goto="3"><b>4</b><span>Date</span></button></li>
+          <li><button type="button" data-goto="4"><b>5</b><span>Details</span></button></li>
+          <span class="steps__bar" aria-hidden="true"><i id="stepsFill"></i></span>
+        </ol>
+
+        <div class="panes">
+          <!-- STEP 1 -->
+          <fieldset class="pane is-active" data-step="0">
+            <legend><span class="pane__kicker">Step 1 of 5</span>What can we do for your car?</legend>
+            <p class="pane__hint">Pick one or more.</p>
+            <div class="opts opts--cards">
+              <label class="opt-card">
+                <input type="checkbox" name="service" value="Colour Change Wrap" data-key="colour-change">
+                <img src="assets/web/amg-side.jpg" alt="" loading="lazy">
+                <span class="opt-card__body"><strong>Colour Change Wrap</strong><small>Full new colour in gloss, satin, matte or metallic.</small></span>
+                <span class="opt-card__tick" aria-hidden="true"></span>
+              </label>
+              <label class="opt-card">
+                <input type="checkbox" name="service" value="Paint Protection Film (PPF)" data-key="ppf">
+                <img src="assets/web/ppf-hood.jpg" alt="" loading="lazy">
+                <span class="opt-card__body"><strong>Paint Protection Film</strong><small>Clear film against chips &amp; scratches.</small></span>
+                <span class="opt-card__tick" aria-hidden="true"></span>
+              </label>
+              <label class="opt-card">
+                <input type="checkbox" name="service" value="Partial Wrap / Two-Tone" data-key="partial">
+                <img src="assets/web/rolls-royce.jpg" alt="" loading="lazy">
+                <span class="opt-card__body"><strong>Partial &amp; Two-Tone</strong><small>Roof, bonnet, mirrors, stripes.</small></span>
+                <span class="opt-card__tick" aria-hidden="true"></span>
+              </label>
+              <label class="opt-card">
+                <input type="checkbox" name="service" value="Chrome Delete & Trim" data-key="chrome-delete">
+                <img src="assets/web/amg-rear.jpg" alt="" loading="lazy">
+                <span class="opt-card__body"><strong>Chrome Delete &amp; Trim</strong><small>Trims, badges and grilles blacked out.</small></span>
+                <span class="opt-card__tick" aria-hidden="true"></span>
+              </label>
+              <label class="opt-card opt-card--plain">
+                <input type="checkbox" name="service" value="Not sure yet — advise me" data-key="unsure">
+                <span class="opt-card__icon" aria-hidden="true">?</span>
+                <span class="opt-card__body"><strong>Not sure yet</strong><small>Tell us the vibe, we'll recommend.</small></span>
+                <span class="opt-card__tick" aria-hidden="true"></span>
+              </label>
+            </div>
+            <p class="pane__error" role="alert"></p>
+          </fieldset>
+
+          <!-- STEP 2 -->
+          <fieldset class="pane" data-step="1">
+            <legend><span class="pane__kicker">Step 2 of 5</span>Tell us about your car.</legend>
+            <div class="fields">
+              <label class="field">Make
+                <input name="make" list="makes" autocomplete="off" placeholder="e.g. Mercedes-Benz" required>
+                <datalist id="makes">
+                  <option>Mercedes-Benz</option><option>BMW</option><option>Audi</option><option>Toyota</option><option>Lexus</option>
+                  <option>Range Rover</option><option>Porsche</option><option>Tesla</option><option>Rolls-Royce</option><option>Bentley</option>
+                  <option>Lamborghini</option><option>Ferrari</option><option>Honda</option><option>Hyundai</option><option>Kia</option>
+                  <option>Geely</option><option>Ford</option><option>Volkswagen</option><option>Nissan</option><option>Chevrolet</option>
+                </datalist>
+              </label>
+              <label class="field">Model
+                <input name="model" autocomplete="off" placeholder="e.g. GLE 53 Coupé" required>
+              </label>
+              <label class="field">Year
+                <select name="year" id="yearSelect"><option value="">Select year</option></select>
+              </label>
+            </div>
+            <p class="field__label">Body type</p>
+            <div class="opts opts--chips">
+              <label class="chip-opt"><input type="radio" name="body" value="Sedan"><span>Sedan</span></label>
+              <label class="chip-opt"><input type="radio" name="body" value="Coupé"><span>Coupé</span></label>
+              <label class="chip-opt"><input type="radio" name="body" value="SUV"><span>SUV</span></label>
+              <label class="chip-opt"><input type="radio" name="body" value="Hatchback"><span>Hatchback</span></label>
+              <label class="chip-opt"><input type="radio" name="body" value="Pickup"><span>Pickup</span></label>
+              <label class="chip-opt"><input type="radio" name="body" value="Other"><span>Other</span></label>
+            </div>
+            <p class="pane__error" role="alert"></p>
+          </fieldset>
+
+          <!-- STEP 3 -->
+          <fieldset class="pane" data-step="2">
+            <legend><span class="pane__kicker">Step 3 of 5</span>Choose your look.</legend>
+            <p class="field__label">Finish</p>
+            <div class="opts opts--chips">
+              <label class="chip-opt"><input type="radio" name="finish" value="Gloss"><span>Gloss</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Satin"><span>Satin</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Matte"><span>Matte</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Metallic"><span>Metallic</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Chrome"><span>Chrome</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Clear (PPF)"><span>Clear (PPF)</span></label>
+              <label class="chip-opt"><input type="radio" name="finish" value="Advise me"><span>Advise me</span></label>
+            </div>
+
+            <p class="field__label">Colour</p>
+            <div class="opts opts--swatches">
+              <label class="sw-opt" style="--sw:#7d8084"><input type="radio" name="colour" value="Satin Grey"><span></span><em>Satin Grey</em></label>
+              <label class="sw-opt" style="--sw:#17171a"><input type="radio" name="colour" value="Stealth Black"><span></span><em>Stealth Black</em></label>
+              <label class="sw-opt" style="--sw:#efeee9"><input type="radio" name="colour" value="Pearl White"><span></span><em>Pearl White</em></label>
+              <label class="sw-opt" style="--sw:#c8141b"><input type="radio" name="colour" value="Vortex Red"><span></span><em>Vortex Red</em></label>
+              <label class="sw-opt" style="--sw:#1c2b4a"><input type="radio" name="colour" value="Midnight Blue"><span></span><em>Midnight Blue</em></label>
+              <label class="sw-opt" style="--sw:#1f3b2b"><input type="radio" name="colour" value="Racing Green"><span></span><em>Racing Green</em></label>
+              <label class="sw-opt" style="--sw:#d7d2c6"><input type="radio" name="colour" value="Chalk"><span></span><em>Chalk</em></label>
+              <label class="sw-opt" style="--sw:#3b3e44"><input type="radio" name="colour" value="Gunmetal"><span></span><em>Gunmetal</em></label>
+            </div>
+            <label class="field field--wide">Something else in mind?
+              <input name="colourOther" placeholder="e.g. Nardo grey, chameleon purple, keep factory colour…">
+            </label>
+
+            <p class="field__label">Coverage</p>
+            <div class="opts opts--chips">
+              <label class="chip-opt"><input type="radio" name="coverage" value="Full car"><span>Full car</span></label>
+              <label class="chip-opt"><input type="radio" name="coverage" value="Partial"><span>Partial</span></label>
+              <label class="chip-opt"><input type="radio" name="coverage" value="Not sure"><span>Not sure</span></label>
+            </div>
+            <p class="pane__error" role="alert"></p>
+          </fieldset>
+
+          <!-- STEP 4 -->
+          <fieldset class="pane" data-step="3">
+            <legend><span class="pane__kicker">Step 4 of 5</span>When works for you?</legend>
+            <div class="fields">
+              <label class="field">Preferred drop-off date
+                <input type="date" name="date" id="dateInput" required>
+              </label>
+            </div>
+            <p class="field__label">Time of day</p>
+            <div class="opts opts--chips">
+              <label class="chip-opt"><input type="radio" name="time" value="Morning"><span>Morning</span></label>
+              <label class="chip-opt"><input type="radio" name="time" value="Afternoon"><span>Afternoon</span></label>
+              <label class="chip-opt"><input type="radio" name="time" value="Flexible"><span>I'm flexible</span></label>
+            </div>
+            <p class="field__label">Best way to reach you</p>
+            <div class="opts opts--chips">
+              <label class="chip-opt"><input type="radio" name="contactBy" value="WhatsApp"><span>WhatsApp</span></label>
+              <label class="chip-opt"><input type="radio" name="contactBy" value="Phone call"><span>Phone call</span></label>
+              <label class="chip-opt"><input type="radio" name="contactBy" value="Email"><span>Email</span></label>
+            </div>
+            <p class="pane__hint">We'll confirm the exact slot with you — this just tells us what suits you.</p>
+            <p class="pane__error" role="alert"></p>
+          </fieldset>
+
+          <!-- STEP 5 -->
+          <fieldset class="pane" data-step="4">
+            <legend><span class="pane__kicker">Step 5 of 5</span>Last bit — your details.</legend>
+            <div class="fields">
+              <label class="field">Full name
+                <input name="name" autocomplete="name" required>
+              </label>
+              <label class="field">Phone / WhatsApp
+                <input name="phone" type="tel" autocomplete="tel" placeholder="+234…" required>
+              </label>
+              <label class="field field--wide">Email <small>(optional)</small>
+                <input name="email" type="email" autocomplete="email">
+              </label>
+              <label class="field field--wide">Anything else we should know?
+                <textarea name="notes" rows="3" placeholder="Inspiration, paint condition, deadlines…"></textarea>
+              </label>
+            </div>
+            <p class="pane__error" role="alert"></p>
+          </fieldset>
+
+          <!-- SUCCESS -->
+          <div class="pane pane--done" data-step="5" tabindex="-1">
+            <svg class="done-check" viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="54"/><path d="M36 62 L54 79 L86 44"/>
+            </svg>
+            <h2>Your booking is <em>on its way.</em></h2>
+            <p>Finish sending it in WhatsApp or your email app, and we'll confirm your slot shortly. If nothing opened, tap below.</p>
+            <div class="done-actions">
+              <a class="btn btn--red" id="resendWa" href="#" target="_blank" rel="noopener">Open WhatsApp again <span class="arrow">→</span></a>
+              <a class="btn btn--ghost" href="index.html">Back to home</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard__nav" id="wizardNav">
+          <button type="button" class="btn btn--ghost" id="prevBtn">← Back</button>
+          <span class="wizard__spacer"></span>
+          <button type="button" class="btn btn--red" id="nextBtn">Continue <span class="arrow">→</span></button>
+          <div class="wizard__send" id="sendBtns" hidden>
+            <button type="button" class="btn btn--ghost" id="sendEmail">Send by email</button>
+            <button type="submit" class="btn btn--wa" id="sendWa">
+              <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.1.55 4.16 1.6 5.97L4 27l6.24-1.63a12.1 12.1 0 0 0 5.8 1.47h.01C22.68 26.84 28 21.48 28 14.87 28 8.3 22.68 3 16.04 3Zm5.49 14.42c-.3-.15-1.78-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.49a9.04 9.04 0 0 1-1.67-2.07c-.18-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.47 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.48 2.47 1.07 3.07.86 3.62.81.57-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35Z"/></svg>
+              Send on WhatsApp
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- LIVE SUMMARY -->
+      <aside class="summary" aria-label="Your build summary">
+        <div class="summary__card">
+          <div class="summary__head">
+            <span class="label">(Your build)</span>
+            <span class="summary__pct"><b id="sumPct">0</b>% planned</span>
+          </div>
+          <div class="summary__car" id="sumCar" data-car data-finish="satin" style="--car:#7d8084"></div>
+          <dl class="summary__list">
+            <div><dt>Service</dt><dd id="sum-service">—</dd></div>
+            <div><dt>Vehicle</dt><dd id="sum-vehicle">—</dd></div>
+            <div><dt>Look</dt><dd id="sum-look">—</dd></div>
+            <div><dt>Date</dt><dd id="sum-date">—</dd></div>
+            <div><dt>Contact</dt><dd id="sum-contact">—</dd></div>
+          </dl>
+          <p class="summary__note">No payment now. We confirm price &amp; timing with you before anything is booked.</p>
+        </div>
+        <a class="summary__help" data-contact="whatsapp" href="https://wa.me/2348066555086" target="_blank" rel="noopener">Rather just talk? <span>Chat on WhatsApp →</span></a>
+      </aside>
+    </section>
+
+    <section class="bk-trust section">
+      <div class="trust" data-reveal="stagger">
+        <div><strong>Hand-laid</strong><span>Every panel finished by hand, edge to edge.</span></div>
+        <div><strong>Reversible</strong><span>Wraps come off clean — factory paint stays protected.</span></div>
+        <div><strong>Honest advice</strong><span>We'll tell you what suits your car, not just what sells.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer__top">
+      <img src="assets/web/logo-wide.png" alt="Vortex Wraps" class="footer__logo" loading="lazy">
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html">Home</a><a href="index.html#work">Work</a><a href="gallery.html">Gallery</a><a href="index.html#services">Services</a><a href="book.html">Book</a>
+      </nav>
+      <div class="footer__social">
+        <a data-contact="instagram" href="https://www.instagram.com/vortexwraps_/" target="_blank" rel="noopener">Instagram</a>
+        <a data-contact="tiktok" href="https://www.tiktok.com/@vortexwraps__" target="_blank" rel="noopener">TikTok</a>
+        <a data-contact="whatsapp" href="https://wa.me/2348066555086" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__word" aria-hidden="true">VORTEX</div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Vortex Wraps. All rights reserved.</span>
+      <span data-contact="location">Lagos, Nigeria</span>
+      <a href="#header">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/book.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>
