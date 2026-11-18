@@ -209,12 +209,35 @@ const CONTACT = {
 
   /* ---------- "In the bay" strip: duplicate for a seamless loop ---------- */
   const bay = $('.bay__track');
-  if (bay) [...bay.children].forEach(img => {
-    const c = img.cloneNode(true);
-    c.alt = '';
+  if (bay) [...bay.children].forEach(item => {
+    const c = item.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
+    c.querySelectorAll('img').forEach(i => { i.alt = ''; });
     bay.appendChild(c);
   });
+
+  /* ---------- Clips: short MP4 loops (these replaced multi-MB GIFs) ----------
+     <span class="clip"><img src="poster.jpg" alt="…"><video data-clip data-src="clip.mp4" muted loop playsinline></span>
+     The <img> is the real, indexable image (alt text for search engines and screen
+     readers). The video is only downloaded when it nears the screen, fades in over
+     the poster once it plays, and pauses off-screen. Reduced motion / Data Saver:
+     the poster only. */
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
+  const clips = $$('video[data-clip]');
+  if (clips.length && !reduceMotion && !saveData && 'IntersectionObserver' in window) {
+    const clipIO = new IntersectionObserver(entries => entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        if (!v.getAttribute('src')) v.src = v.dataset.src;
+        v.play().catch(() => {});
+      } else if (!v.paused) {
+        v.pause();
+      }
+    }), { rootMargin: '200px 0px' });
+    clips.forEach(v => {
+      v.addEventListener('playing', () => v.parentElement.classList.add('is-playing'), { once: true });
+      clipIO.observe(v);
+    });
+  }
 
   /* ---------- Accordions (one open at a time) ---------- */
   $$('.acc').forEach(acc => {

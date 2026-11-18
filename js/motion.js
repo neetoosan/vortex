@@ -18,8 +18,15 @@
   };
 
   const ready = () => root.classList.add('is-ready');
+  // The inline <head> script reveals the page after 4.5s if this file is slow to arrive
+  // (it adds .no-motion). If that already happened, don't cover the page again.
+  const late = root.classList.contains('no-motion');
 
   if (!hasGSAP || reduce) {
+    // No animation layer (reduced motion, or the GSAP CDN failed): the page-transition
+    // veil is shown by CSS from first paint, so it must be switched off here or it
+    // covers the whole site with a black screen.
+    root.classList.add('no-motion');
     ready();
     return;
   }
@@ -108,6 +115,11 @@
     return new Promise(resolve => {
       const first = !store.get('vx-seen');
       store.set('vx-seen', '1');
+      if (late) {
+        if (veil) veil.style.display = 'none';
+        ready();
+        return resolve();
+      }
       if (!first) {
         if (veil) gsap.to(veil, { yPercent: -100, duration: 0.8, ease: 'power4.inOut', delay: 0.05, onComplete: () => { veil.style.display = 'none'; } });
         ready();
@@ -176,7 +188,9 @@
     mm.add('(min-width: 900px)', () => {
       const bay = $('.bay'), bayTrack = $('.bay__track');
       if (!bay || !bayTrack) return;
-      $$('[aria-hidden="true"]', bayTrack).forEach(c => c.remove());
+      // the CSS marquee needs the duplicated clips; the pinned scroll doesn't
+      const clones = $$(':scope > [aria-hidden="true"]', bayTrack);
+      clones.forEach(c => c.remove());
       bayTrack.style.animation = 'none';
       bay.classList.add('bay--pinned');
       const dist = () => bayTrack.scrollWidth - window.innerWidth + 80;
@@ -184,24 +198,36 @@
         x: () => -dist(), ease: 'none',
         scrollTrigger: { trigger: bay, start: 'top top', end: () => `+=${dist()}`, scrub: 0.8, pin: true, invalidateOnRefresh: true },
       });
-      $$('img', bayTrack).forEach(img => gsap.from(img, {
+      [...bayTrack.children].forEach(img => gsap.from(img, {
         rotate: 6, y: 80, opacity: 0.3, ease: 'none',
         scrollTrigger: { trigger: img, containerAnimation: tween, start: 'left 100%', end: 'left 60%', scrub: true },
       }));
-      return () => bay.classList.remove('bay--pinned');
+      // back below 900px: restore the looping marquee
+      return () => {
+        bay.classList.remove('bay--pinned');
+        bayTrack.style.animation = '';
+        clones.forEach(c => bayTrack.appendChild(c));
+      };
     });
 
     /* hero intro */
     const hero = $('.hero');
     if (hero) {
-      gsap.timeline()
+      if (!late) gsap.timeline()
         .from('.hero__tags', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' }, 0.1)
         .from('.hero__video', { opacity: 0, duration: 1.6, ease: 'power2.out' }, 0);
       gsap.to('.hero__video', { yPercent: 18, scale: 1.12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.hero__title', { yPercent: -35, opacity: 0.15, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
-      const hb = $('.hero__bottom'); if (hb) hb.style.animation = 'none';
-      if (hb) gsap.from(hb.children, { opacity: 0, y: 30, duration: 1, delay: 0.6, stagger: 0.1, ease: 'power3.out' });
-      gsap.to('.hero__bottom', { y: -60, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: '30% top', end: '80% top', scrub: true } });
+      const hb = $('.hero__bottom');
+      if (hb) {
+        // CSS starts this row at opacity 0 and fades it in with a keyframe animation.
+        // GSAP takes over here, so the row itself must be made visible again — otherwise
+        // the lede, the "Book your wrap" button and the counter stay invisible.
+        hb.style.animation = 'none';
+        gsap.set(hb, { opacity: 1 });
+        if (!late) gsap.from(hb.children, { opacity: 0, y: 30, duration: 1, delay: 0.6, stagger: 0.1, ease: 'power3.out' });
+        gsap.fromTo(hb, { y: 0, opacity: 1 }, { y: -60, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: '30% top', end: '80% top', scrub: true } });
+      }
     }
 
     /* headings */
@@ -223,10 +249,10 @@
 
     /* images: clip reveal + inner zoom */
     $$('[data-reveal="img"]').forEach(el => {
-      const media = el.querySelector('img, video');
+      const media = el.querySelectorAll('img, video');   // poster + clip move together
       const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%' } });
       tl.fromTo(el, { clipPath: 'inset(100% 0% 0% 0% round 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 18px)', duration: 1.3, ease: 'power4.inOut' });
-      if (media) tl.from(media, { scale: 1.35, duration: 1.6, ease: 'power3.out' }, 0);
+      if (media.length) tl.from(media, { scale: 1.35, duration: 1.6, ease: 'power3.out' }, 0);
     });
 
     /* parallax */

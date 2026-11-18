@@ -13,7 +13,7 @@
   const DRAFT = 'vx-booking-draft';
 
   const panes = $$('.pane', form);
-  const stepsEl = $$('#steps li');
+  const stepsEl = $$('#steps li:not(.steps__bar)');
   const fill = $('#stepsFill');
   const prev = $('#prevBtn'), next = $('#nextBtn'), sendBtns = $('#sendBtns'), nav = $('#wizardNav');
   const LAST = 4;
@@ -53,7 +53,7 @@
 
   /* ---------- live summary ---------- */
   const car = $('#sumCar');
-  const finishMap = { Gloss: 'gloss', Satin: 'satin', Matte: 'matte', Metallic: 'gloss', Chrome: 'gloss', 'Clear (PPF)': 'gloss' };
+  const finishMap = { Gloss: 'gloss', Satin: 'satin', Matte: 'matte', Metallic: 'metallic', Chrome: 'chrome', 'Clear (PPF)': 'gloss' };
   const pct = $('#sumPct');
   function summary() {
     const d = data();
@@ -111,7 +111,7 @@
   }
 
   /* ---------- navigation ---------- */
-  function go(to, dir = 1) {
+  function go(to, dir = 1, moveFocus = true) {
     const from = panes[step];
     const target = panes[to];
     step = to;
@@ -142,7 +142,7 @@
     } else {
       from.classList.remove('is-active');
       target.classList.add('is-active');
-      focusPane(target);
+      if (moveFocus) focusPane(target);
     }
     const top = form.getBoundingClientRect().top + window.scrollY - 90;
     if (window.scrollY > top) (window.vortexLenis ? window.vortexLenis.scrollTo(top) : window.scrollTo({ top, behavior: 'smooth' }));
@@ -183,10 +183,15 @@
   }
   const waURL = () => `https://wa.me/${CONTACT.phoneIntl}?text=${encodeURIComponent(message())}`;
 
+  let sent = false;
   function finish(openUrl, external) {
     if (external) window.open(openUrl, '_blank', 'noopener');
     else location.href = openUrl;
     $('#resendWa').href = waURL();
+    // Leaving the last field fires `change` just before the send click, which queues a
+    // draft save 300ms later — cancel it, or the sent booking comes back next visit.
+    sent = true;
+    clearTimeout(saveT);
     try { localStorage.removeItem(DRAFT); } catch { /* ignore */ }
     go(LAST + 1, 1);
     const check = $('.done-check');
@@ -235,6 +240,7 @@
   form.addEventListener('input', () => {
     summary();
     clearTimeout(saveT);
+    if (sent) return;
     saveT = setTimeout(() => {
       const d = data();
       try { localStorage.setItem(DRAFT, JSON.stringify(d)); } catch { /* storage unavailable */ }
@@ -246,6 +252,6 @@
   });
   form.addEventListener('change', () => form.dispatchEvent(new Event('input')));
 
-  go(0);
+  go(0, 1, false); // initial render: don't pull keyboard/screen-reader focus into the form
   summary();
 })();
