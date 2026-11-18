@@ -21,10 +21,11 @@
 
   const ready = it => !it.hasAttribute('data-pending');
   const shown = () => items.filter(it => ready(it) && !it.hidden);
-  const BOOK = {
-    'colour-change': ['colour-change', 'Book a colour change'],
-    ppf: ['ppf', 'Book paint protection'],
-    'two-tone': ['partial', 'Book a two-tone wrap'],
+  const CTA = {   // lightbox button per category: [link, label]
+    'colour-change': ['book.html?service=colour-change', 'Book a colour change'],
+    ppf: ['book.html?service=ppf', 'Book paint protection'],
+    'two-tone': ['book.html?service=partial', 'Book a two-tone wrap'],
+    founder: ['founder.html', "Read Emmanuel's story"],
   };
 
   /* keep the sticky bar right under the (sticky) header */
@@ -178,8 +179,8 @@
     els.cat.textContent = $('figcaption span', item)?.textContent || '';
     els.title.textContent = btn.dataset.title || '';
     els.desc.textContent = $('img', btn).alt;
-    const [svc, label] = BOOK[cat] || [null, 'Book your wrap'];
-    els.book.href = svc ? `book.html?service=${svc}` : 'book.html';
+    const [href, label] = CTA[cat] || ['book.html', 'Book your wrap'];
+    els.book.href = href;
     els.bookText.textContent = label;
 
     // warm up the neighbouring photos
